@@ -1,0 +1,31 @@
+<section class="wrapper" [class.active]="isVisited">
+  <div class="form signup">
+    <header [class.active]="isVisited" (click)="useRegister()">Signup</header>
+    <form action="#" [formGroup]="RegisterForm">
+      <input type="text" placeholder="Full name" formControlName="fullName" />
+      <input type="text" placeholder="Email address" formControlName="email" />
+      <input type="password" placeholder="Password" formControlName="password" />
+      <select name="currency" id="" formControlName="currencyPreference">
+        <option value="GEL">GEL</option>
+        <option value="USD">USD</option>
+        <option value="EUR">EUR</option>
+        <option value="RUB">RUB</option>
+        <option value="TL">TL</option>
+      </select>
+      <div class="checkbox">
+        <input type="checkbox" id="signupCheck" />
+        <label for="signupCheck">I accept all terms & conditions</label>
+      </div>
+      <input type="submit" value="Signup" />
+    </form>
+  </div>
+  <div class="form login">
+    <header [class.active]="isVisited" (click)="useLogin()">Login</header>
+    <form action="#" [formGroup]="signInForm">
+      <input type="text" placeholder="Email address"  formControlName="email" />
+      <input type="password" placeholder="Password" formControlName="password" />
+      <a href="#">Forgot password?</a>
+      <input type="submit" value="Login" />
+    </form>
+  </div>
+</section>
