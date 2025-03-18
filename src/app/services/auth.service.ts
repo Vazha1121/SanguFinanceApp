@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({
   providedIn: 'root',
@@ -8,14 +9,15 @@ import { Observable } from 'rxjs';
 export class AuthService {
   private apiUrl = 'http://localhost:5000/api/auth'; // Adjust API endpoint if necessary
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private cookies: CookieService) {}
 
   register(
     fullName: string,
     email: string,
     password: string,
     confirmPassword: string,
-    currencyPreference: string
+    currencyPreference: string,
+    acceptTerms: boolean
   ): Observable<any> {
     return this.http.post(`${this.apiUrl}/register`, {
       fullName,
@@ -23,6 +25,7 @@ export class AuthService {
       password,
       confirmPassword,
       currencyPreference,
+      acceptTerms
     });
   }
 
@@ -30,23 +33,23 @@ export class AuthService {
     return this.http.post(`${this.apiUrl}/login`, { email, password });
   }
 
-  // Check if the user is authenticated by checking for the token in localStorage
+  // Check if the user is authenticated by checking for the token in cookies
   isAuthenticated(): boolean {
-    return !!localStorage.getItem('token');  // Checks if token exists in localStorage
+    return !!this.cookies.get('token');  // Checks if token exists in cookies
   }
 
-  // Store token in localStorage after login
+  // Store token in cookies after login
   storeToken(token: string): void {
-    localStorage.setItem('token', token);
+    this.cookies.set('token', token);
   }
 
-  // Retrieve the token from localStorage
+  // Retrieve the token from cookies
   getToken(): string | null {
-    return localStorage.getItem('token');
+    return this.cookies.get('token');
   }
 
-  // Remove token from localStorage on logout
+  // Remove token from cookies on logout
   logout(): void {
-    localStorage.removeItem('token');
+    this.cookies.delete('token');
   }
 }
