@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 import { AuthorizationComponent } from './authorization/authorization.component';
 import { NavComponent } from './nav/nav.component';
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -11,6 +12,12 @@ import { NavComponent } from './nav/nav.component';
 })
 export class AppComponent implements OnInit{
   title = 'SanguFinanceApp';
-  ngOnInit(): void {}
+  constructor(private authService: AuthService, private router: Router) {}
 
+  ngOnInit(): void {
+    const token = this.authService.getToken();
+    if (!token) {
+      this.router.navigate(['/login']);
+    }
+  }
 }
