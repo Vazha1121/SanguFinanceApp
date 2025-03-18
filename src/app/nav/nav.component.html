@@ -1,6 +1,17 @@
-
 <nav>
-    <ul routerLink="Auth">
-        <li>Login In</li>
+    <ul>
+      <li routerLink="/home" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" *ngIf="isAuthenticated()">Home</li> 
+      <li routerLink="/auth" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" *ngIf="!isAuthenticated()">Log In</li>
+      <li *ngIf="isAuthenticated()" (click)="onLogout()">Log Out</li>
     </ul>
-</nav>
+  </nav>
+  
+  
+  <!-- Confirmation Modal for Log Out -->
+  <div *ngIf="showLogoutModal" class="modal-overlay">
+    <div class="modal">
+      <p>Are you sure you want to log out?</p>
+      <button (click)="logoutConfirmed()">Yes, log out</button>
+      <button (click)="cancelLogout()">Cancel</button>
+    </div>
+  </div>

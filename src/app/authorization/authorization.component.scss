@@ -125,3 +125,17 @@
     opacity: 0.6;
   }
 }
+/* Style for error messages */
+.error-message {
+  color: #ffffff;
+  font-size: 12px;
+  margin-top: -10px;
+}
+
+input:invalid {
+  border-color: #ffffff;
+}
+
+input:valid {
+  border-color: #4caf50;
+}
