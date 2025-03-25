@@ -1,20 +1,21 @@
 <section class="budgetSec">
+  <datepicker-views-selection-example></datepicker-views-selection-example>
   <div class="d1">
     <h1>Budgets</h1>
     <button (click)="addBudget()">Add Budget</button>
-    <input type="text" [(ngModel)]="totalBudget">
+    <input type="text" [(ngModel)]="totalBudget" class="addBudgetInput" [class.addBudgetActive]="addBudgetDisable"/>
   </div>
   <div class="d2">
     <div>
-      <h3>Rs. {{total}}</h3>
+      <h3>Rs. {{ total }}</h3>
       <p>TOTAL BUDGET</p>
     </div>
     <div>
-      <h3>Rs. {{sumUsed}}</h3>
+      <h3>Rs. {{ sumUsed }}</h3>
       <p>TOTAL USED</p>
     </div>
     <div>
-      <h3>Rs. {{totalLeft}}</h3>
+      <h3>Rs. {{ total - sumUsed }}</h3>
       <p>TOTAL LEFT</p>
     </div>
   </div>
@@ -33,8 +34,17 @@
         <td>{{ item.Name }}</td>
         <td>{{ item.Budget }}</td>
         <td>{{ item.usedAmount }}</td>
-        <td>{{ item.balanceLeft }}</td>
-        <td><i class="fa-solid fa-pen-to-square"></i></td>
+        @if(item.balanceLeft > 0){
+          <td [style.color]="'green'">{{item.balanceLeft}}</td>
+        }@else {
+          <td [style.color]="'red'">{{item.balanceLeft}}</td>
+        }
+        <td>
+          <i
+            class="fa-solid fa-pen-to-square"
+            (click)="editBtn($index, item.Name, item.Budget, item.usedAmount)"
+          ></i>
+        </td>
       </tr>
       }
     </table>

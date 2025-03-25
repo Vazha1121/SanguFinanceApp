@@ -18,6 +18,20 @@
       color: white;
       font-weight: 700;
       background-color: #e02d43;
+      transition: 0.2s;
+      cursor: pointer;
+    }
+    button:hover{
+      transform: scale(1.1);
+    }
+    .addBudgetInput{
+     
+      outline: none;
+      width: 130px;
+      height: 40px;
+    }
+    .addBudgetActive{
+      display: none;
     }
   }
   .d2 {
@@ -51,6 +65,9 @@
         th {
           text-align: start;
           color: grey;
+        }
+        td{
+          font-weight: 700;
         }
       }
     }

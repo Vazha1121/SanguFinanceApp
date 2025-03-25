@@ -20,6 +20,19 @@
   color: white;
   font-weight: 700;
   background-color: #e02d43;
+  transition: 0.2s;
+  cursor: pointer;
+}
+.budgetSec .d1 button:hover {
+  transform: scale(1.1);
+}
+.budgetSec .d1 .addBudgetInput {
+  outline: none;
+  width: 130px;
+  height: 40px;
+}
+.budgetSec .d1 .addBudgetActive {
+  display: none;
 }
 .budgetSec .d2 {
   display: flex;
@@ -55,6 +68,9 @@
 .budgetSec .d3 table tr th {
   text-align: start;
   color: grey;
+}
+.budgetSec .d3 table tr td {
+  font-weight: 700;
 }
 .budgetSec .d3 .formDiv {
   width: 100%;

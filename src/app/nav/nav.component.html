@@ -9,10 +9,10 @@
     </li>
     <li routerLink="/budget">Budget</li>
     @if(isAuthenticated()){
-    
+
     <li (click)="onLogout()">Log Out</li>
     }@else if(!isAuthenticated()){
-    <li routerLink="/auth">Budget</li>
+    <!-- <li routerLink="/auth">Budget</li> -->
     <li
       routerLink="/auth"
       routerLinkActive="active"

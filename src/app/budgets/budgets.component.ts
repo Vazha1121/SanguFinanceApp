@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
+import { DatepickerViewsSelectionExample } from '../date-picker/date-picker.component';
 
 @Component({
   selector: 'app-budgets',
-  imports: [FormsModule],
+  imports: [FormsModule,DatepickerViewsSelectionExample],
   templateUrl: './budgets.component.html',
   styleUrl: './budgets.component.scss',
 })
@@ -39,11 +40,22 @@ export class BudgetsComponent {
     this.budget = '';
     this.usedAmount = '';
     this.balanceLeft = '';
+    this.sumUsed = this.prodArray.reduce((acc:any,item:any) => acc + Number(item.usedAmount), 0)
+    console.log(this.sumUsed);
   
   }
   public total:any;
+ public addBudgetDisable: boolean = false
   addBudget(){
+    this.addBudgetDisable = !this.addBudgetDisable;
     this.total = this.totalBudget
   }
-  
+  /* edit */
+  editBtn(index:any,name:string,budget:any,usedamount:any){
+    this.prodArray.splice(index, 1)
+    this.showInput = true
+    this.prodName = name;
+    this.budget = budget;
+    this.usedAmount = usedamount;
+  }
 }
